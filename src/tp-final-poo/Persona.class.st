@@ -12,3 +12,19 @@ Class {
 	#category : 'tp-final-poo',
 	#package : 'tp-final-poo'
 }
+
+{ #category : 'construction' }
+Persona class >> crear: unDni nombre: unNombre apellido: unApellido [
+|unaPersona|
+unaPersona := self new.
+unaPersona init: unDni nombre: unNombre apellido: unApellido .
+^unaPersona 
+]
+
+{ #category : 'initialization' }
+Persona >> init: unDni nombre: unNombre apellido: unApellido [
+dni:= unDni .
+nombre:= unNombre .
+apellido:= unApellido .
+
+]

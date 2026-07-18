@@ -14,3 +14,30 @@ Class {
 	#category : 'tp-final-poo',
 	#package : 'tp-final-poo'
 }
+
+{ #category : 'construction' }
+Tratamiento class >> crear: unMotivo [
+|unTratamiento|
+unTratamiento := self new.
+unTratamiento init: unMotivo .
+^unTratamiento 
+]
+
+{ #category : 'accessing' }
+Tratamiento >> fecha [
+
+	^ fecha
+]
+
+{ #category : 'initialization' }
+Tratamiento >> init: unMotivo [ 
+fecha := Date today .
+motivo:= unMotivo .
+
+]
+
+{ #category : 'accessing' }
+Tratamiento >> motivo: anObject [
+
+	motivo := anObject
+]

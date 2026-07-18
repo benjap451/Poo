@@ -16,6 +16,14 @@ Class {
 }
 
 { #category : 'construction' }
+Factura class >> crear: unCliente cuit: unCuit diagnostico: unDiag monto: unMonto [
+|unaFactura|
+unaFactura := self new.
+unaFactura init: unCliente cuit: unCuit diagnostico: unDiag monto: unMonto.
+^unaFactura 
+]
+
+{ #category : 'construction' }
 Factura class >> crear: unCliente cuit: unCuit diagnostico: unDiag monto: unMonto fechaFacturacion: unaFecha [
 |unaFactura|
 unaFactura := self new.
@@ -45,6 +53,15 @@ Factura >> diagnostico [
 Factura >> fechaFacturacion [
 
 	^ fechaFacturacion
+]
+
+{ #category : 'initialization' }
+Factura >> init: unCliente cuit: unCuit diagnostico: unDiag monto: unMonto [
+cliente := unCliente .
+cuit := unCuit .
+diagnostico := unDiag .
+monto := unMonto .
+fechaFacturacion := Date today .
 ]
 
 { #category : 'initialization' }
