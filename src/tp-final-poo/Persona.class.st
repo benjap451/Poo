@@ -21,10 +21,28 @@ unaPersona init: unDni nombre: unNombre apellido: unApellido .
 ^unaPersona 
 ]
 
+{ #category : 'accessing' }
+Persona >> apellido [
+
+	^ apellido
+]
+
+{ #category : 'accessing' }
+Persona >> dni [
+
+	^ dni
+]
+
 { #category : 'initialization' }
 Persona >> init: unDni nombre: unNombre apellido: unApellido [
 dni:= unDni .
 nombre:= unNombre .
 apellido:= unApellido .
 
+]
+
+{ #category : 'accessing' }
+Persona >> nombre [
+
+	^ nombre
 ]

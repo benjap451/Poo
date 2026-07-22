@@ -38,6 +38,12 @@ Factura >> cliente [
 	^ cliente
 ]
 
+{ #category : 'messages' }
+Factura >> compararCliente: unCliente [
+
+^cliente esIgual: unCliente 
+]
+
 { #category : 'accessing' }
 Factura >> cuit [
 
@@ -84,6 +90,12 @@ Factura >> monto [
 { #category : 'messages' }
 Factura >> obtenerNombreCliente [
 ^cliente nombre 
+]
+
+{ #category : 'messages' }
+Factura >> rangoDeFecha: primerFecha fecha: segundaFecha [
+
+^(primerFecha to: segundaFecha ) includes: fechaFacturacion 
 ]
 
 { #category : 'messages' }

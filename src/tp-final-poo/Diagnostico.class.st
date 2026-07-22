@@ -101,3 +101,9 @@ colTratamientos do: [ :t|
 
 ^c	
 ]
+
+{ #category : 'messages' }
+Diagnostico >> realizadoPorVeterinario: unVeterinario [
+
+^medico dni = unVeterinario dni 
+]

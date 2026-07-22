@@ -17,11 +17,12 @@ Class {
 }
 
 { #category : 'construction' }
-Veterinaria class >> crear [
-|unaVeterinaria|
-unaVeterinaria := self new. 
-unaVeterinaria init.
-^unaVeterinaria 
+Veterinaria class >> crear: unCuit [
+
+	| unaVeterinaria |
+	unaVeterinaria := self new.
+	unaVeterinaria init: unCuit.
+	^ unaVeterinaria
 ]
 
 { #category : 'messages' }
@@ -55,6 +56,12 @@ Veterinaria >> colMedicos [
 	^ colMedicos
 ]
 
+{ #category : 'accessing' }
+Veterinaria >> cuit [
+
+	^ cuit
+]
+
 { #category : 'messages' }
 Veterinaria >> facturasPendientes [
 
@@ -68,6 +75,13 @@ Veterinaria >> facturasPendientes [
 ]
 
 { #category : 'messages' }
+Veterinaria >> facturasPendientesPorCliente: unCliente [
+
+^colFacturas select: [ : f |
+		(f compararCliente:unCliente) and: (f esPendiente ) ].
+]
+
+{ #category : 'messages' }
 Veterinaria >> generarFactura: unDiagnostico [
 
 	| res unaFactura |
@@ -76,7 +90,8 @@ Veterinaria >> generarFactura: unDiagnostico [
 			| unaMascota unCliente costo |
 			unaMascota := unDiagnostico mascota.
 			unCliente := self buscarClienteConMascota: unaMascota.
-			costo := unDiagnostico calcularCosto.
+			unCliente ifNil: [ ^ false ].
+			costo := unDiagnostico montoFinal .
 			unaFactura := Factura
 				              crear: unCliente
 				              cuit: cuit
@@ -96,11 +111,39 @@ Veterinaria >> generarListadoFaltantes [
 ]
 
 { #category : 'initialization' }
-Veterinaria >> init [
+Veterinaria >> init: unCuit [
 
 	colMedicos := OrderedCollection new.
 	colClientes := OrderedCollection new.
 	colDiagnosticos := OrderedCollection new.
 	colFacturas := OrderedCollection new.
-	colMedicamentos := OrderedCollection new. 
+	colMedicamentos := OrderedCollection new.
+	cuit := unCuit.
+]
+
+{ #category : 'messages' }
+Veterinaria >> recaudacionEntreFechas: primerFecha fecha: segundaFecha [
+
+|montoAux|
+montoAux :=0.
+colFacturas do: [ : f |
+		(f rangoDeFecha: primerFecha fecha: segundaFecha ) ifTrue:[
+				montoAux:= montoAux + f monto ].
+			].
+		
+^montoAux 
+	
+]
+
+{ #category : 'messages' }
+Veterinaria >> tratamientosPorVeterinario: unVeterinario [
+
+|colRes|
+colRes := OrderedCollection new.
+
+colDiagnosticos do: [ :d|
+		(d realizadoPorVeterinario: unVeterinario) ifTrue:[
+			colRes addAll: d colTratamientos ].].
+	
+^colRes 
 ]

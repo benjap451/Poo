@@ -17,6 +17,16 @@ Class {
 	#package : 'tp-final-poo'
 }
 
+{ #category : 'construction' }
+Quirurgico class >> crear: unMotivo nombreProcedimiento: unNombre nivelRiesgo: nivel tipoAnestesia: tipo [
+
+|unQuirurgico|
+
+unQuirurgico := self new.
+unQuirurgico init: unMotivo nombreProcedimiento: unNombre nivelRiesgo: nivel tipoAnestesia: tipo.
+^unQuirurgico 
+]
+
 { #category : 'class initialization' }
 Quirurgico class >> initialize [ 
 RIESGO := Dictionary new.
@@ -54,4 +64,16 @@ Quirurgico >> esValido [
 	(nivelRiesgo = 2 and: tipoAnestesia ~= 'general') ifTrue: [ res := false ].
 
 	^ res
+]
+
+{ #category : 'initialization' }
+Quirurgico >> init: unMotivo nombreProcedimiento: unNombre nivelRiesgo: nivel tipoAnestesia: tipo [
+
+self init: unMotivo .
+nombreProcedimiento := unNombre .
+nivelRiesgo := nivel .
+tipoAnestesia := tipo.
+
+
+
 ]

@@ -16,6 +16,17 @@ Class {
 	#package : 'tp-final-poo'
 }
 
+{ #category : 'creation' }
+Farmacologico class >> crear: unMotivo medicamento: unMed dosis: unaDosis frecuencia: unaFre [
+
+|unFarma|
+
+unFarma := self new.
+unFarma init: unMotivo medicamento: unMed dosis: unaDosis frecuencia: unaFre.
+
+^unFarma 
+]
+
 { #category : 'class initialization' }
 Farmacologico class >> initialize [
 TOPEDESCUENTO:= 40000.
@@ -39,4 +50,13 @@ Farmacologico >> calcularCosto [
 Farmacologico >> esValido [
 
 	^ super esValido or: medicamento ventaLibre 
+]
+
+{ #category : 'initialization' }
+Farmacologico >> init: unMotivo medicamento: unMed dosis: unaDosis frecuencia: unaFre [
+
+self init: unMotivo .
+medicamento := unMed .
+dosis := unaDosis .
+frecuencia := unaFre .
 ]
