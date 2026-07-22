@@ -9,7 +9,8 @@ Class {
 		'cuit',
 		'diagnostico',
 		'monto',
-		'fechaFacturacion'
+		'fechaFacturacion',
+		'colPagos'
 	],
 	#category : 'tp-final-poo',
 	#package : 'tp-final-poo'
@@ -49,6 +50,11 @@ Factura >> diagnostico [
 	^ diagnostico
 ]
 
+{ #category : 'messages' }
+Factura >> esPendiente [
+^monto > self totalPagado 
+]
+
 { #category : 'accessing' }
 Factura >> fechaFacturacion [
 
@@ -57,24 +63,44 @@ Factura >> fechaFacturacion [
 
 { #category : 'initialization' }
 Factura >> init: unCliente cuit: unCuit diagnostico: unDiag monto: unMonto [
-cliente := unCliente .
-cuit := unCuit .
-diagnostico := unDiag .
-monto := unMonto .
-fechaFacturacion := Date today .
-]
 
-{ #category : 'initialization' }
-Factura >> init: unCliente cuit: unCuit diagnostico: unDiag monto: unMonto fechaFacturacion: unaFecha [
-cliente := unCliente .
-cuit := unCuit .
-diagnostico := unDiag .
-monto := unMonto .
-fechaFacturacion := unaFecha .
+	cliente := unCliente.
+	cuit := unCuit.
+	diagnostico := unDiag.
+	monto := unMonto.
+	fechaFacturacion := Date today.
+	colPagos := OrderedCollection new.
+	
+	
+	
 ]
 
 { #category : 'accessing' }
 Factura >> monto [
 
 	^ monto
+]
+
+{ #category : 'messages' }
+Factura >> obtenerNombreCliente [
+^cliente nombre 
+]
+
+{ #category : 'messages' }
+Factura >> registrarPago: unPago [
+	
+	|t|
+	t:= self totalPagado .
+	(monto >= t and: monto>= unPago monto ) ifTrue: [ colPagos add: unPago ]
+	
+]
+
+{ #category : 'messages' }
+Factura >> totalPagado [
+|t|
+t:=0.
+colPagos do: [ :p| 
+		t:=t+p monto ].
+	
+^t 
 ]

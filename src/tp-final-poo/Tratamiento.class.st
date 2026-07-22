@@ -23,6 +23,16 @@ unTratamiento init: unMotivo .
 ^unTratamiento 
 ]
 
+{ #category : 'messages' }
+Tratamiento >> calcularCosto [
+^VALORBASE
+]
+
+{ #category : 'messages' }
+Tratamiento >> esValido [
+^(Date dayOfWeek: fecha dayOfWeekName )between: 2 and: 6
+]
+
 { #category : 'accessing' }
 Tratamiento >> fecha [
 

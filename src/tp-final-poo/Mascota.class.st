@@ -9,11 +9,22 @@ Class {
 		'especie',
 		'raza',
 		'peso',
-		'fechaNacimiento'
+		'fechaNacimiento',
+		'id',
+		'colAplicacionVacunas'
+	],
+	#classVars : [
+		'CONTADOR'
 	],
 	#category : 'tp-final-poo',
 	#package : 'tp-final-poo'
 }
+
+{ #category : 'messages' }
+Mascota class >> aumentarCont [
+CONTADOR := CONTADOR +1.
+
+]
 
 { #category : 'construction' }
 Mascota class >> crear: unNombre especie: unaEspecie raza: unaRaza peso: unPeso fechaNacimiento: unaFecha [
@@ -21,6 +32,27 @@ Mascota class >> crear: unNombre especie: unaEspecie raza: unaRaza peso: unPeso 
 unaMacota := self new.
 unaMacota init: unNombre especie: unaEspecie raza: unaRaza peso: unPeso fechaNacimiento: unaFecha .
 ^unaMacota 
+]
+
+{ #category : 'class initialization' }
+Mascota class >> initialize [
+CONTADOR:=1.
+
+]
+
+{ #category : 'messages' }
+Mascota >> aplicarVacuna: unaVacuna veterinario: unVet [
+
+|unaAplicacion|
+
+unaAplicacion := AplicacionVacuna crear: self vacuna: unaVacuna veterinario: unVet .
+
+colAplicacionVacunas add: unaAplicacion .
+]
+
+{ #category : 'messages' }
+Mascota >> esIgual: unaMascota [
+^self id = unaMascota id
 ]
 
 { #category : 'accessing' }
@@ -35,13 +67,24 @@ Mascota >> fechaNacimiento [
 	^ fechaNacimiento
 ]
 
+{ #category : 'accessing' }
+Mascota >> id [
+
+	^ id
+]
+
 { #category : 'initialization' }
 Mascota >> init: unNombre especie: unaEspecie raza: unaRaza peso: unPeso fechaNacimiento: unaFecha [
-nombre := unNombre .
-especie := unaEspecie .
-raza := unaRaza .
-peso := unPeso .
-fechaNacimiento := unaFecha .
+
+	nombre := unNombre.
+	especie := unaEspecie.
+	raza := unaRaza.
+	peso := unPeso.
+	fechaNacimiento := unaFecha.
+	id := CONTADOR.
+	self class aumentarCont.
+	colAplicacionVacunas := OrderedCollection new.
+	
 ]
 
 { #category : 'accessing' }

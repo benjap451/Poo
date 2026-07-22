@@ -9,7 +9,11 @@ Class {
 		'descripcion',
 		'medico',
 		'mascota',
-		'colTratamientos'
+		'colTratamientos',
+		'id'
+	],
+	#classVars : [
+		'CONTADOR'
 	],
 	#category : 'tp-final-poo',
 	#package : 'tp-final-poo'
@@ -21,6 +25,17 @@ Diagnostico class >> crear: unaFechaDiagnostico descripcion: unaDes medico: unMe
 unDiagnostico := self new.
 unDiagnostico  init: unaFechaDiagnostico descripcion: unaDes medico: unMed mascota: unaMas .
 ^unDiagnostico 
+]
+
+{ #category : 'class initialization' }
+Diagnostico class >> initialize [ 
+CONTADOR:=0.
+]
+
+{ #category : 'accessing' }
+Diagnostico class >> obtenerContador [
+
+	^ CONTADOR
 ]
 
 { #category : 'accessing' }
@@ -41,6 +56,12 @@ Diagnostico >> descripcion: anObject [
 	descripcion := anObject
 ]
 
+{ #category : 'messages' }
+Diagnostico >> esIgual: unDiagnostico [
+
+	^ id = unDiagnostico id
+]
+
 { #category : 'accessing' }
 Diagnostico >> fechaDiagnostico [
 
@@ -49,13 +70,13 @@ Diagnostico >> fechaDiagnostico [
 
 { #category : 'initialization' }
 Diagnostico >> init: unaFechaDiagnostico descripcion: unaDes medico: unMed mascota: unaMas [
-	fechaDiagnostico := unaFechaDiagnostico .
-	descripcion := unaDes .
-	medico :=unMed.
+
+	fechaDiagnostico := unaFechaDiagnostico.
+	descripcion := unaDes.
+	medico := unMed.
 	mascota := unaMas.
-	colTratamientos := OrderedCollection new .
-	
-	
+	colTratamientos := OrderedCollection new.
+	id:= self class obtenerContador .
 ]
 
 { #category : 'accessing' }
@@ -68,4 +89,15 @@ Diagnostico >> mascota [
 Diagnostico >> medico [
 
 	^ medico
+]
+
+{ #category : 'messages' }
+Diagnostico >> montoFinal [
+|c|
+c := 0.
+
+colTratamientos do: [ :t|
+		 c:= c + t calcularCosto ].
+
+^c	
 ]
