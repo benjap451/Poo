@@ -14,6 +14,20 @@ Class {
 	#package : 'tp-final-poo'
 }
 
+{ #category : 'messages' }
+Vacuna >> comparar: unaVacuna [
+
+^self nombre = unaVacuna nombre 
+]
+
+{ #category : 'messages' }
+Vacuna >> compararFecha: unaFecha [
+	|fechaAux|
+	fechaAux :=unaFecha addMonths: mesesVigencia.
+
+	^ fechaAux < Date today
+]
+
 { #category : 'accessing' }
 Vacuna >> especieDestino [
 

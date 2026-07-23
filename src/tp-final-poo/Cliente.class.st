@@ -44,3 +44,10 @@ self init: unDni nombre: unNombre apellido: unApellido.
 telefono := unTel .
 colMascotas := OrderedCollection new.
 ]
+
+{ #category : 'messages' }
+Cliente >> revisarMascotas [
+
+^colMascotas select: [ : m | 
+		m revisarAplicaciones ]
+]

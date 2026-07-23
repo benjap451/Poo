@@ -135,6 +135,17 @@ Veterinaria >> init: unCuit [
 ]
 
 { #category : 'messages' }
+Veterinaria >> mascotasConVacunasVencidas [
+
+|colAux |
+colAux := OrderedCollection  new.
+colClientes do: [ : c |
+		colAux addAll: c revisarMascotas ].
+	
+^colAux
+]
+
+{ #category : 'messages' }
 Veterinaria >> recaudacionEntreFechas: primerFecha fecha: segundaFecha [
 
 |montoAux|

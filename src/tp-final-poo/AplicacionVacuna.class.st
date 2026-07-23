@@ -24,6 +24,18 @@ AplicacionVacuna class >> crear: unaMascota vacuna: unaVacuna veterinario: unVet
 	^ unaAplicacion
 ]
 
+{ #category : 'messages' }
+AplicacionVacuna >> esDeVacuna: unaVacuna [
+
+^vacuna comparar: unaVacuna
+]
+
+{ #category : 'messages' }
+AplicacionVacuna >> estaVencida [
+
+	^ vacuna compararFecha: fecha
+]
+
 { #category : 'accessing' }
 AplicacionVacuna >> fecha [
 

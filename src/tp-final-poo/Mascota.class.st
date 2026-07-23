@@ -109,3 +109,26 @@ Mascota >> raza [
 
 	^ raza
 ]
+
+{ #category : 'messages' }
+Mascota >> revisarAplicaciones [
+	|colAux| 
+	
+	colAux:= colAplicacionVacunas select: [ :a | a estaVencida ].
+	
+	^colAux isNotNil 
+]
+
+{ #category : 'messages' }
+Mascota >> ultimaAplicacionDe: unaVacuna [
+
+|colAux|
+
+colAux:= colAplicacionVacunas asSortedCollection: [:a :b| a fecha > b fecha ].
+		
+^colAux detect:[: a | a esDeVacuna: unaVacuna ] ifNone: [nil].
+
+
+
+
+]
