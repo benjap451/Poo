@@ -110,6 +110,19 @@ Veterinaria >> generarListadoFaltantes [
 		m faltaStock ]
 ]
 
+{ #category : 'messages' }
+Veterinaria >> historialClinicoDe: unaMascota [
+
+|colRes|
+
+colRes := colDiagnosticos select: [ : d |  
+			d compararMascota: unaMascota ].
+		
+colRes addAll: unaMascota listaDeVacunasAplicadas .
+
+^colRes 
+]
+
 { #category : 'initialization' }
 Veterinaria >> init: unCuit [
 

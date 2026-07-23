@@ -87,6 +87,11 @@ Mascota >> init: unNombre especie: unaEspecie raza: unaRaza peso: unPeso fechaNa
 	
 ]
 
+{ #category : 'messages' }
+Mascota >> listaDeVacunasAplicadas [
+^colAplicacionVacunas 
+]
+
 { #category : 'accessing' }
 Mascota >> nombre [
 

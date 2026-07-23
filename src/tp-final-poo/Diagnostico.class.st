@@ -44,6 +44,12 @@ Diagnostico >> colTratamientos [
 	^ colTratamientos
 ]
 
+{ #category : 'messages' }
+Diagnostico >> compararMascota: unaMascota [
+
+^mascota id = unaMascota id
+]
+
 { #category : 'accessing' }
 Diagnostico >> descripcion [
 
